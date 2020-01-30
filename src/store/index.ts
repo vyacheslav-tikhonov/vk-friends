@@ -1,15 +1,18 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import * as Vuex from 'vuex';
+import { createStore } from 'vuex-smart-module';
+import root from './modules/root';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
+// The 1st argument is root module.
+// Vuex store options should be passed to the 2nd argument.
+export const store = createStore(
+  // Root module
+  root,
+
+  // Vuex store options
+  {
+    strict: process.env.NODE_ENV === 'production',
   },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+);
