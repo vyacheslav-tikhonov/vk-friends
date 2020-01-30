@@ -74,7 +74,7 @@ interface IApi {
   call: (
     method: string, //  API method name.
     params: {[key: string]: string | number | any[]}, // method parameters.
-    callback: () => any, // callback function.
+    callback: (data?: any) => any, // callback function.
   ) => any;
 }
 
@@ -103,12 +103,12 @@ type TSubscribeIvent =
   'widgets.unsubscribed'; // Follower is deleted in Subscribe widget.
 
 interface IObserver {
-  subscribe: (event: TSubscribeIvent, handler: () => any) => any;
+  subscribe: (event: TSubscribeIvent, handler: (data?: any) => any) => any;
   /*
     Adds a function passed in handler parameter to the list of recipients of the event
     which is specified in event parameter.
   */
-  unsubscribe: (event: TSubscribeIvent, handler?: () => any) => any;
+  unsubscribe: (event: TSubscribeIvent, handler?: (data?: any) => any) => any;
   /*
     Deletes a function passed in handler parameter from the list of recipients of
     the event which is specified in event parameter. If handler parameter is not set,
