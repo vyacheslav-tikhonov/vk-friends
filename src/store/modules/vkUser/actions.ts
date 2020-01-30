@@ -26,7 +26,6 @@ class VkUserActions extends Actions<
         },
         (data: any) => {
         if (data && data.response) {
-          console.log(data.response);
           this.commit('setCurrentUser', data.response[0]);
           resolve(data.response);
         } else {
@@ -48,7 +47,6 @@ class VkUserActions extends Actions<
         (data: any) => {
           if (data && data.response) {
             this.commit('setUserFriends', data.response);
-            console.log(data.response.items);
             resolve(data.response.items);
           } else {
             reject();
