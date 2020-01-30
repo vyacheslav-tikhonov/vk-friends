@@ -1,6 +1,6 @@
-class TransactionsState {
+class VkAuthState {
   public session: ISession | null = null;
   public status: TStatus = 'unknown';
 }
 
-export default TransactionsState;
+export default VkAuthState;
