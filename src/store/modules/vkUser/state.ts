@@ -1,6 +1,6 @@
 class VkUserState {
-  currentUser: any = {};
-  friends: any[] = [];
+  public currentUser: IVKUser | null = null;
+  public friends: IVKUser[] = [];
 }
 
 export default VkUserState;

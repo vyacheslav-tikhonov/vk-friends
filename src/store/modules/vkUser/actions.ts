@@ -15,7 +15,7 @@ class VkUserActions extends Actions<
   VkUserMutations,
   VkUserActions
 > {
-  public getCurrentUser(userId: string, fields = defaultFields) {
+  public getCurrentUser(userId: string, fields = defaultFields): Promise<IVKUser> {
       return new Promise((resolve, reject) => {
       VK.Api.call(
         'users.get',
@@ -24,10 +24,10 @@ class VkUserActions extends Actions<
           fields,
           user_ids: [userId],
         },
-        (data: any) => {
+        (data: {response: IVKUser[]}) => {
         if (data && data.response) {
           this.commit('setCurrentUser', data.response[0]);
-          resolve(data.response);
+          resolve(data.response[0]);
         } else {
           reject();
         }
@@ -35,7 +35,7 @@ class VkUserActions extends Actions<
     });
   }
 
-  public getUserFriends(userId: string, fields = defaultFields) {
+  public getUserFriends(userId: string, fields = defaultFields): Promise<IVKUser[]> {
     return new Promise((resolve, reject) => {
       VK.Api.call(
         'friends.get',
@@ -44,9 +44,9 @@ class VkUserActions extends Actions<
           fields,
           user_id: [userId],
         },
-        (data: any) => {
+        (data: {response: {items: IVKUser[]}}) => {
           if (data && data.response) {
-            this.commit('setUserFriends', data.response);
+            this.commit('setUserFriends', data.response.items);
             resolve(data.response.items);
           } else {
             reject();

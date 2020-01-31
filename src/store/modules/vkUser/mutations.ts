@@ -9,6 +9,11 @@ class VkUserMutations extends Mutations<VkUserState> {
   public setUserFriends(data: any) {
     this.state.friends = data;
   }
+
+  public clearState() {
+    this.state.currentUser = null;
+    this.state.friends = [];
+  }
 }
 
 export default VkUserMutations;
